@@ -2,8 +2,10 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import keyring
 import os
+from flask_bootstrap import Bootstrap
 
 db = SQLAlchemy()
+bootstrap = Bootstrap()
 
 
 
@@ -32,6 +34,7 @@ def create_app(test_config=None):
         pass
 
     db.init_app(app)
+    bootstrap.init_app(app)
 
 
 

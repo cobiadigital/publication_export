@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block header %}
+{% block title %}{% endblock %}
+{% endblock %}
+{% block content %}
+    {% import "bootstrap/wtf.html" as wtf %}
+    <div class="container">
+    <div class="row">
+    <div class="col-sm-4">
+        <h2>Add Person</h2>
+
+        {{ wtf.quick_form(people_form) }}
+    </div>
+        <div class="col-sm-4">
+            <ul>
+            {% for person in people %}
+            <li>{{ person.last_name }}, {{ person.first_name }}{% if person.middle_initial %}
+                {{ person.middle_initial }}{% endif %}</li>
+        {% endfor %}
+
+         <form method="POST">
+       {{ presentation_form.title }}
+       {{ presentation_form.conference_name(class_='autocomplete-select') }}
+       {{ presentation_form.new_choice }}
+       {{ presentation_form.submit }}
+   </form>
+            </ul>
+
+         </div>
+    </div>
+</div>
+
+   <script>
+   $(document).ready(function() {
+       $('.autocomplete-select').select2();  // or $('.autocomplete-select').selectize();
+   });
+</script>
+
+
+{% endblock %}
